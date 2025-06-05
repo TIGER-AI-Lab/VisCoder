@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>VisCoder</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/f8ddf9854a.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Fine-Tuning LLMs for Executable Python Visualization Code Generation">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> VisCoder: Fine-Tuning LLMs for Executable Python Visualization Code Generation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="https://kit.fontawesome.com/fff5b27ec1.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More Research
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="https://huggingface.co/datasets/MMMU/MMMU_Pro">
+                <b>MMMU-Pro</b> <span style="font-size:18px; display: inline; margin-left: 5px;">🔥</span>
+              </a>
+              <a class="navbar-item" href="https://mmmu-benchmark.github.io/">
+                MMMU
+              </a>
+              <a class="navbar-item" href="https://phyx-bench.github.io/">
+                PhyX
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title is-bold">
+                <span class="mmmu" style="vertical-align: middle">VisCoder</span>
+              </h1>
+              <h2 class="subtitle is-3 publication-subtitle">
+                Fine-Tuning LLMs for Executable Python Visualization Code Generation
+              </h2>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://yuanshengni.github.io/" style="text-decoration: none; color: inherit;">Yuansheng Ni†</a>,
+                </span>
+                <span class="author-block">Ping Nie,</span>
+                <span class="author-block">Kai Zou,</span>
+                <span class="author-block">
+                  <a href="https://xiangyue9607.github.io/" style="text-decoration: none; color: inherit;">Xiang Yue</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://wenhuchen.github.io/" style="text-decoration: none; color: inherit;">Wenhu Chen†</a>
+                </span>
+              </div>
+
+              <br>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">†Corresponding to:</span>
+                <span class="author-block"><a href="mailto:yuansheng.ni@uwaterloo.ca">yuansheng.ni@uwaterloo.ca</a>,</span>
+                <span class="author-block"><a href="mailto:wenhuchen@uwaterloo.ca">wenhuchen@uwaterloo.ca</a></span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2506.03930" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://huggingface.co/datasets/TIGER-Lab/VisCode-200K" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon" style="font-size:18px">🤗</span>
+                      <span>VisCode-200K</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://huggingface.co/TIGER-Lab/VisCoder-7B" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon" style="font-size:18px">🤗</span>
+                      <span>VisCoder-7B</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://huggingface.co/TIGER-Lab/VisCoder-3B" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon" style="font-size:18px">🤗</span>
+                      <span>VisCoder-3B</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://github.com/TIGER-AI-Lab/VisCoder" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="#examples" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon has-text-white">
+                        <i class="fa-solid fa-book"></i>
+                      </span>
+                      <span>Examples</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="margin-bottom: 2vh;">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Large language models (LLMs) often struggle with visualization tasks like plotting diagrams, charts, where success depends on both code correctness and visual semantics. Existing instruction-tuning datasets lack <strong>execution-grounded supervision</strong> and offer limited support for <strong>iterative code correction</strong>, resulting in fragile and unreliable plot generation. We present <strong>VisCode-200K</strong>, a large-scale instruction tuning dataset for Python-based visualization and self-correction. It contains over 200K examples from two sources: (1) validated plotting code from open-source repositories, paired with natural language instructions and rendered plots; and (2) 45K multi-turn correction dialogues from <strong>Code-Feedback</strong>, enabling models to revise faulty code using runtime feedback. We fine-tune Qwen2.5-Coder-Instruct on VisCode-200K to create <strong>VisCoder</strong>, and evaluate it on <strong>PandasPlotBench</strong>. VisCoder significantly outperforms strong open-source baselines and approaches the performance of proprietary models like GPT-4o-mini. We further adopt a <strong>self-debug evaluation protocol</strong> to assess iterative repair, demonstrating the benefits of feedback-driven learning for executable, visually accurate code generation.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Abstract. -->
+    </div>
+    </section>
+
+    <!-- DATASET SECTION -->
+    <section class="hero is-light is-small">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-1 mmmu">
+          <span class="mmmu">VisCode-200K: Python Visualization Dataset</span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Overview</h2>
+            <div class="content has-text-justified">
+              <p>
+                <strong>VisCode-200K</strong> is a supervised instruction tuning dataset for Python-based visualization and feedback-driven code correction. It integrates two complementary sources of supervision: (1) executable visualization code extracted from open-source Python repositories, covering a wide range of real-world chart types, layouts, and plotting libraries, and filtered to ensure runtime validity and compatibility with standard Python environments; and (2) multi-turn Python dialogues from the Code-Feedback dataset, which provide supervision for revising faulty code in response to execution errors. These interactions are critical for modeling realistic correction behaviors in iterative workflows. The full pipeline consists of code filtering, runtime validation, and structured instruction generation.
+              </p>
+              <div class="content has-text-centered">
+                <img src="static/images/pipeline.png" alt="Data Pipeline" class="center" style="max-width: 100%; height: auto;">
+                <p>
+                  Data construction pipeline for VisCode-200K. We extract and filter visualization code blocks from open-source Python sources, validate their executability and plot rendering via Jupyter-based runtime checks, and generate structured instructions paired with rendered plots. We integrate multi-turn correction data from Code-Feedback during instruction construction to support iterative refinement.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Code Extraction from Public Repositories</h2>
+            <div class="content has-text-justified">
+              <p>
+                To build a large corpus of executable Python visualization code, we source data from two open datasets: 
+                the Python subset of 
+                <a href="https://huggingface.co/datasets/HuggingFaceTB/stack-edu" target="_blank"><code>stack-edu</code></a> and 
+                the chart/table partitions of 
+                <a href="https://huggingface.co/datasets/allenai/CoSyn-400K" target="_blank"><code>CoSyn-400K</code></a>. 
+                From these corpora, we extract code that uses commonly adopted visualization libraries, including 
+                <code>matplotlib</code>, <code>seaborn</code>, and others, to ensure broad coverage of real-world plotting styles.
+                The construction pipeline consists of four stages: library-based filtering, code block extraction, 
+                runtime validation, and instruction generation.
+              </p>
+            </div>
+
+            <div class="carousel results-carousel">
+
+              <!-- Box 1 -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Filtering and Code Block Extraction</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        From the <strong>Stack-EDU</strong> dataset, we apply library-based filters to identify approximately 1.7M Python samples that invoke common visualization libraries. 
+                        Since most examples embed visualization logic within broader program contexts, we use <code>GPT-4o-mini</code> to extract minimal, standalone plotting blocks. 
+                        During this process, we inject mock data to replace missing inputs and ensure that each block can be executed in isolation.
+                      </p>
+                      <p>
+                        After filtering and reconstruction, we obtain roughly 1M candidate blocks. To balance library distribution, we retain all <code>seaborn</code> and other samples 
+                        and randomly subsample a matching number of <code>matplotlib</code> examples, resulting in a curated subset of ~300K visualization blocks.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Box 2 -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Runtime Validation</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        To verify executability, we run each code block in an isolated Jupyter environment using <code>nbconvert</code> with <code>allow-error=False</code>. 
+                        We enforce a timeout and terminate executions that hang or enter infinite loops using a simulated keyboard interrupt.
+                      </p>
+                      <p>
+                        Only samples that run successfully and generate a valid image file are retained. This step yields 105K validated plotting scripts from 
+                        <code>stack-edu</code> and 50K from <code>CoSyn-400K</code>, each paired with its corresponding output image.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Box 3 -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Instruction Generation</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        To construct meaningful instructions for visualization code generation, we use <code>GPT-4o</code> to synthesize instruction components based on each validated code block and its corresponding plot. 
+                        Each instruction includes: (1) setup description, (2) data description, (3) data block preview, (4) high-level plot description, and (5) style description.
+                      </p>
+                      <p>
+                        For <code>stack-edu</code>, mock data is extracted directly from the code. For <code>CoSyn</code>, we construct a compact preview using the first two rows of the table. 
+                        The five components are assembled using a fixed template to form a consistent instruction format across all sources.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Multi-turn Feedback Integration</h2>
+            <div class="content has-text-justified">
+              <p>
+                To train models with self-correction capabilities, we incorporate <strong>45K multi-turn dialogues</strong> from the 
+                <a href="https://huggingface.co/datasets/m-a-p/Code-Feedback" target="_blank">Code-Feedback</a> dataset. 
+                These dialogues include user instructions, model-generated code, and follow-up turns containing execution feedback or revision prompts.
+              </p>
+              <p>
+                Starting from 56K dialogues, we filter out samples with excessive length or turn count to ensure training consistency, 
+                resulting in a high-quality subset of realistic correction behaviors.
+              </p>
+              <p>
+                While not specific to visualization, these dialogues offer valuable supervision for teaching models to revise faulty code based on runtime signals. 
+                They are integrated into VisCode-200K alongside single-turn samples from Stack-EDU and CoSyn, enabling models to learn both 
+                initial generation and <strong>multi-turn refinement strategies</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <section class="hero is-light is-small">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-1 mmmu">Experiment Results</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Overall Main Results Intro -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Main Results</h2>
+            <div class="content has-text-justified">
+              <p>
+                We present the main experimental results on PandasPlotBench, including overall model comparisons,
+                performance under the self-debug evaluation protocol, error type analysis, and a training data ablation study.
+              </p>
+              <p>
+                We evaluate VisCoder models against both proprietary and open-source language models to assess executable visualization performance across scales and libraries. The proprietary group includes GPT-4o and GPT-4o-mini. Among open-source baselines, we compare LLaMA-3.2-3B, LLaMA-3.1-8B, Qwen2.5-Instruct, and Qwen2.5-Coder-Instruct at both 3B and 7B scales. VisCoder models are trained on VisCode-200K and fine-tuned using the same instruction tuning setup.
+              </p>
+            </div>
+            <div class="content has-text-centered">
+              <img src="static/images/main_results.png" alt="main results" style="width: 80%;">
+              <p>
+                Performance of selected models on the PandasPlotBench benchmark. For each model, we report (1) execution pass rate (<strong>Exec Pass</strong>), (2) mean visual and task scores (<strong>Mean</strong>), and (3) the proportion of samples scoring at least 75 (<strong>Good</strong>). The best-performing model in each scale is shown in <strong>bold</strong>, and the second best is <u>underlined</u>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insights Boxes -->
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="carousel results-carousel">
+
+              <!-- Box 1: Proprietary Models -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Proprietary Models Remain Stronger</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        Proprietary models outperform open-source models by a wide margin across all plotting libraries. 
+                        GPT-4o achieves the highest execution pass rates and the strongest judge-based scores, 
+                        followed by its lightweight variant GPT-4o-mini. These results indicate more reliable execution and better 
+                        semantic alignment with task instructions, especially in complex visualization settings. In contrast, 
+                        open-source models like LLaMA and Qwen2.5-Instruct underperform consistently across all metrics.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Box 2: Plotly Challenge -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Plotly Presents Harder Challenge</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        Performance varies across plotting libraries. While most models perform reliably on 
+                        <code>matplotlib</code> and <code>seaborn</code>, results on <code>plotly</code> are significantly lower, 
+                        especially for open-source models. Execution pass rates often drop below 35%, and task/visual scores degrade accordingly. 
+                        Generated plots frequently fail to reflect the intended semantics or completeness, revealing the challenge posed by 
+                        <code>plotly</code>'s verbose syntax and less frequent API exposure in training corpora.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Box 3: VisCoder Closing the Gap -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>VisCoder Closes the Open-Source Gap</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        VisCoder significantly outperforms its Qwen2.5-Coder-Instruct baselines across all libraries. 
+                        At the 3B scale, it improves execution success and semantic alignment, especially on <code>plotly</code> and <code>seaborn</code>. 
+                        At 7B, VisCoder even outperforms GPT-4o-mini on these two libraries, although slightly trailing on <code>matplotlib</code>. 
+                        These gains highlight the impact of domain-specific instruction tuning for visualization code generation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Box 4: Self-Debug Improves Further -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Self-Debug Further Boosts Performance</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        GPT-4o demonstrates strong self-debugging capabilities, reaching near-perfect execution success with multiple attempts. 
+                        VisCoder also benefits substantially under this evaluation protocol. VisCoder-7B surpasses 90% execution rate on 
+                        <code>matplotlib</code> and <code>seaborn</code>, with large gains in task and visual scores across correction rounds. 
+                        These results show VisCoder’s ability to generalize debugging behaviors learned from training, even without plot-specific correction examples.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- SELF-DEBUG SECTION -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Self-Debug Evaluation</h2>
+            <div class="content has-text-justified">
+              <p>
+                To analyze the dynamics of self-debugging, we track execution pass rates over multiple correction rounds 
+                by evaluating GPT-4o and GPT-4o-mini as proprietary baselines, alongside VisCoder models at 3B and 7B scales. 
+                To isolate the effects of instruction tuning, we also include untuned Qwen2.5-Coder models at matching sizes.
+                The chart below shows execution pass rates from the initial generation (Attempt 0) through three rounds of 
+                self-debugging (Attempts 1–3), presented separately for each plotting library.
+              </p>
+            </div>
+            <div class="content has-text-centered">
+              <img src="static/images/exec_self_debug.png" alt="Self Debug Lineplot" style="max-width: 80%; height: auto;">
+              <p>
+                <strong>Execution pass rate</strong> across self-debug rounds (Attempt 0–3), shown separately for three plotting libraries. 
+                Attempt 0 corresponds to the default output, while Attempts 1–3 represent subsequent correction rounds. 
+                Model groups are color-coded, with solid and dashed lines used to distinguish paired models. 
+                VisCoder models improve consistently across rounds, with VisCoder-7B gradually closing the gap to GPT-4o on 
+                <code>seaborn</code>. Y-axis ranges are scaled per subplot to match library-specific score distributions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SELF-DEBUG INSIGHTS BOXES -->
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="carousel results-carousel">
+
+              <!-- Box 1: Self-debug Effective -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Self-Debug Is Broadly Effective</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        Execution pass rates increase steadily over self-debug rounds for most models and libraries, 
+                        indicating the overall effectiveness of the protocol. The first attempt typically yields the largest improvement, 
+                        with smaller gains in subsequent rounds. This pattern suggests that a simple retry mechanism informed by execution feedback 
+                        can recover a substantial portion of initial failures.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Box 2: VisCoder Stability -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>VisCoder Yields Stable Behavior</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        Compared to their Qwen2.5-Coder baselines, VisCoder models show smaller per-round gains 
+                        but consistently achieve higher final performance. This indicates that VisCoder tends to generate 
+                        stronger initial outputs and applies more stable corrections. 
+                        VisCoder-7B is particularly strong on <code>seaborn</code>, approaching GPT-4o by the final round.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Box 3: Remaining Failures -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Failures Remain Across Models</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        Even the strongest model GPT-4o does not reach perfect execution after self-debug. 
+                        Its performance on <code>seaborn</code> plateaus after three rounds, leaving non-trivial failure cases. 
+                        In contrast, VisCoder-3B stands out among smaller models — outperforming GPT-4o-mini on <code>seaborn</code> 
+                        and performing competitively elsewhere. Smaller models generally plateau earlier with fewer gains.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- ERROR ANALYSIS SECTION -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Error Analysis</h2>
+            <div class="content has-text-justified">
+              <p>
+                To examine the error recovery behavior of VisCoder-7B, we analyze how execution error counts transition 
+                before and after self-debugging. The table below summarizes four representative error types, grouped by plotting library. 
+                Each entry shows the count before and after debugging (e.g., 15 → 2).
+              </p>
+            </div>
+            <div class="content has-text-centered">
+              <img src="static/images/error_analysis.png" alt="Error Table" style="max-width: 40%; height: auto;">
+              <p>
+                <strong>Execution error transitions</strong> for VisCoder-7B across four representative error types. 
+                Values show changes from the initial to post-debugging state. Structural issues (e.g., <code>AttributeError</code>) 
+                are often resolved, while semantic failures (e.g., <code>KeyError</code>) persist.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ERROR ANALYSIS BOXES -->
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="carousel results-carousel">
+
+              <!-- Box 1: Structural Recovery -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Effective Recovery from Structural Errors</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        VisCoder-7B demonstrates strong self-correction ability on shallow, structural errors. 
+                        <code>AttributeErrors</code> in Seaborn are reduced from 15 to 2, and <code>TypeErrors</code> in Plotly from 3 to 1. 
+                        These errors usually stem from invalid method calls or argument mismatches and are easily identified by diagnostic outputs. 
+                        VisCoder learns to correct them consistently through retry-based feedback.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Box 2: Semantic Failures Persist -->
+              <div class="box m-5">
+                <div class="columns is-centered">
+                  <div class="column is-three-quarters">
+                    <div class="content has-text-centered">
+                      <h3 class="title is-5"><strong>Persistent Failures in Semantic Execution Errors</strong></h3>
+                    </div>
+                    <div class="content has-text-justified">
+                      <p>
+                        Semantic failures such as <code>KeyError</code> and <code>ValueError</code> are harder to resolve. 
+                        On Plotly, <code>ValueErrors</code> drop only slightly (29 → 23), while <code>KeyErrors</code> remain unchanged. 
+                        These errors require dynamic reasoning about data structures, but VisCoder’s retry attempts often rely on the same faulty assumptions. 
+                        Symbolic corrections alone are insufficient for resolving such semantically grounded failures.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- CASE STUDY SECTION -->
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3 has-text-centered" id="examples">Case Study</h2>
+
+            <div class="content has-text-justified">
+              <p>
+                To illustrate model behavior across different plotting libraries and demonstrate the effectiveness of self-debugging, we present representative examples from VisCoder-7B. 
+                For each library—<code>matplotlib</code>, <code>seaborn</code>, and <code>plotly</code>—we show both successful generations and failure cases recovered through multi-round correction.
+                These cases reflect the model's ability to correct common structural errors such as <code>AttributeError</code> and <code>ValueError</code>, while also highlighting persistent challenges in more semantic failures.
+              </p>
+            </div>
+
+            <div class="carousel results-carousel">
+              <!-- Matplotlib: Correct -->
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/case_matplotlib_correct.png" alt="case_matplotlib_correct" width="60%"/>
+                  <p class="mt-3"><strong>Matplotlib – Successful Generation:</strong> The model generates code that executes successfully and produces a plot consistent with the ground truth.</p>
+                </div>
+              </div>
+
+              <!-- Matplotlib: Debug -->
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/case_matplotlib_debug.png" alt="case_matplotlib_debug" width="60%"/>
+                  <p class="mt-3"><strong>Matplotlib – Self-Debug Recovery:</strong> An <code>AttributeError</code> raised during initial generation is corrected in the first debug round, resulting in a valid plot.</p>
+                </div>
+              </div>
+
+              <!-- Seaborn: Correct -->
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/case_seaborn_correct.png" alt="case_seaborn_correct" width="60%"/>
+                  <p class="mt-3"><strong>Seaborn – Successful Generation:</strong> Code executes correctly on the first attempt and produces a semantically aligned plot.</p>
+                </div>
+              </div>
+
+              <!-- Seaborn: Debug -->
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/case_seaborn_debug.png" alt="case_seaborn_debug" width="60%"/>
+                  <p class="mt-3"><strong>Seaborn – Self-Debug Recovery:</strong> An <code>AttributeError</code> is fixed after three rounds of debugging, yielding a corrected and faithful plot.</p>
+                </div>
+              </div>
+
+              <!-- Plotly: Correct -->
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/case_plotly_correct.png" alt="case_plotly_correct" width="60%"/>
+                  <p class="mt-3"><strong>Plotly – Successful Generation:</strong> The model correctly generates and executes a visualization that aligns with expected output.</p>
+                </div>
+              </div>
+
+              <!-- Plotly: Debug -->
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/case_plotly_debug.png" alt="case_plotly_debug" width="60%"/>
+                  <p class="mt-3"><strong>Plotly – Self-Debug Recovery:</strong> A <code>ValueError</code> is corrected in the second debug round, producing a valid final result.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- CONCLUSION SECTION -->
+    <section class="hero is-light is-small">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-1 mmmu">
+          <span class="mmmu">VisCoder: Executable Python Visualization</span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Conclusion</h2>
+            <div class="content has-text-justified">
+              <p>
+                In conclusion, <strong>VisCode-200K</strong> provides a large-scale instruction tuning dataset for Python visualization code generation,
+                combining executable plotting examples with multi-turn correction dialogues grounded in runtime feedback.
+                To validate its effectiveness, we evaluate <strong>VisCoder</strong> models on <code>PandasPlotBench</code> using the default setting.
+                Additionally, we propose a <em>self-debug protocol</em> to simulate realistic correction workflows and assess model performance in this extended evaluation mode.
+              </p>
+              <p>
+                Experiments show that VisCoder substantially outperforms strong open-source baselines across execution and alignment metrics,
+                and narrows the gap to proprietary models like <strong>GPT-4o-mini</strong>.
+                Gains are particularly pronounced in settings that involve complex visualization structures, such as <code>plotly</code>,
+                and iterative correction through self-debugging.
+                Ablation studies further demonstrate that structurally diverse, executable training data and feedback-driven supervision contribute to more robust performance across plotting libraries.
+              </p>
+              <p>
+                Looking forward, this work reinforces the importance of <strong>domain-specific instruction tuning</strong> and <strong>multi-turn correction supervision</strong>
+                for building robust and semantically grounded visualization-capable models.
+                Future extensions may explore broader plotting libraries, richer correction supervision, and evaluation methods that measure models' abilities to recover from execution errors.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- @PAN TODO: bibtex -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title is-3 has-text-centered">BibTeX</h2>
+        <pre><code>
+          @misc{ni2025viscoderfinetuningllmsexecutable,
+                title={VisCoder: Fine-Tuning LLMs for Executable Python Visualization Code Generation}, 
+                author={Yuansheng Ni and Ping Nie and Kai Zou and Xiang Yue and Wenhu Chen},
+                year={2025},
+                eprint={2506.03930},
+                archivePrefix={arXiv},
+                primaryClass={cs.SE},
+                url={https://arxiv.org/abs/2506.03930}, 
+          }
+    </code></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is website adapted from <a href="https://nerfies.github.io">MathVista</a> and <a href="https://mmmu-benchmark.github.io/">MMMU</a>, licensed under a <a rel="license"
+                                                  href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
