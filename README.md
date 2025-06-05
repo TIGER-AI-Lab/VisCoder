@@ -50,6 +50,10 @@ See the following folders for details:
 - [`train/`](./train): Training scripts and configurations based on ms-swift.
 - [`eval/`](./eval): Evaluation scripts adapted from PandasPlotBench with our self-debug extension.
 
+## Contact
+- Yuansheng Ni: yuansheng.ni@uwaterloo.ca
+- Wenhu Chen: wenhuchen@uwaterloo.ca
+
 ## 📖 Citation
 
 **BibTeX:**
