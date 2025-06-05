@@ -30,8 +30,8 @@ huggingface-cli download TIGER-Lab/VisCode-200K\
 ## 3. Run Training Scripts
 
 ```bash
-sh train_viscoder_3b.sh
-sh train_viscoder_7b.sh
+bash train_viscoder_3b.sh
+bash train_viscoder_7b.sh
 ```
 Each script launches full fine-tuning with DeepSpeed and FlashAttention, using Qwen2.5-Coder as the base model.
 
