@@ -1,17 +1,12 @@
 # VisCoder: Fine-Tuning LLMs for Executable Python Visualization Code Generation
 
-[**🌐 Project Page**](https://tiger-ai-lab.github.io/VisCoder) | [**📖 arXiv**](https://arxiv.org/abs/2506.03930) | [**🤗 VisCode-200K Dataset**](https://huggingface.co/datasets/TIGER-Lab/VisCode-200K) | [**🤗 VisCoder-3B**](https://huggingface.co/TIGER-Lab/VisCoder-3B) | [**🤗 VisCoder-7B**](https://huggingface.co/TIGER-Lab/VisCoder-7B)
-
-This repository provides the training and evaluation code for our paper: 
-> **VisCoder: Fine-Tuning LLMs for Executable Python Visualization Code Generation**  
-> Yuansheng Ni, Ping Nie, Kai Zou, Xiang Yue, Wenhu Chen
+[**🌐 Project Page**](https://tiger-ai-lab.github.io/VisCoder) | [**📖 arXiv**](https://arxiv.org/abs/2506.03930) | [**🤗 VisCode-200K**](https://huggingface.co/datasets/TIGER-Lab/VisCode-200K) | [**🤗 VisCoder-3B**](https://huggingface.co/TIGER-Lab/VisCoder-3B) | [**🤗 VisCoder-7B**](https://huggingface.co/TIGER-Lab/VisCoder-7B)
 
 ---
 
 ## 🔔 News
 
 - **🔥 [2025-06-05] VisCoder and VisCode-200K are now publicly released! Check out our [paper](https://arxiv.org/abs/2506.03930) and [collections](https://huggingface.co/collections/TIGER-Lab/viscoder-6840333efe87c4888bc93046).**
----
 
 ## 🧠 Introduction
 
@@ -58,13 +53,10 @@ See the following folders for details:
 
 **BibTeX:**
 ```bibtex
-@misc{ni2025viscoderfinetuningllmsexecutable,
-      title={VisCoder: Fine-Tuning LLMs for Executable Python Visualization Code Generation}, 
-      author={Yuansheng Ni and Ping Nie and Kai Zou and Xiang Yue and Wenhu Chen},
-      year={2025},
-      eprint={2506.03930},
-      archivePrefix={arXiv},
-      primaryClass={cs.SE},
-      url={https://arxiv.org/abs/2506.03930}, 
+@article{ni2025viscoder,
+  title={VisCoder: Fine-Tuning LLMs for Executable Python Visualization Code Generation},
+  author={Ni, Yuansheng and Nie, Ping and Zou, Kai and Yue, Xiang and Chen, Wenhu},
+  journal={arXiv preprint arXiv:2506.03930},
+  year={2025}
 }
 ```
