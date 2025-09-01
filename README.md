@@ -1,4 +1,4 @@
-# VisCoder: Fine-Tuning LLMs for Executable Python Visualization Code Generation
+# VisCoder: Fine-Tuning LLMs for Executable Python Visualization Code Generation [EMNLP25]
 
 [**🌐 Project Page**](https://tiger-ai-lab.github.io/VisCoder) | [**📖 arXiv**](https://arxiv.org/abs/2506.03930) | [**🤗 VisCode-200K**](https://huggingface.co/datasets/TIGER-Lab/VisCode-200K) | [**🤗 VisCoder-3B**](https://huggingface.co/TIGER-Lab/VisCoder-3B) | [**🤗 VisCoder-7B**](https://huggingface.co/TIGER-Lab/VisCoder-7B)
 
