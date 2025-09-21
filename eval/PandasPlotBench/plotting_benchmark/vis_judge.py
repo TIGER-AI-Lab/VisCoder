@@ -84,11 +84,12 @@ class VisJudge:
             else:
                 if bench_type == "vis":
                     plots = [gen_plots[0], item.plots_gt[0]]
+                    current_instruct = bench_instruct
                 elif bench_type == "task":
-                    bench_instruct = self.gen_task_judge_request(bench_instruct, item)
+                    current_instruct = self.gen_task_judge_request(bench_instruct, item)
                     plots = gen_plots
                 response = self.vis_judge_model.make_request(
-                    request=bench_instruct,
+                    request=current_instruct,
                     images=plots,
                     image_detail="auto",
                 )
